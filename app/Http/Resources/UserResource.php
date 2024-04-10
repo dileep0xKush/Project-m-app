@@ -5,9 +5,8 @@ namespace App\Http\Resources;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Http\Resources\UserResource;
 
-class ProjectResource extends JsonResource
+class UserResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -18,15 +17,10 @@ class ProjectResource extends JsonResource
     {
         // return parent::toArray($request);
         return [
-            'id' =>$this->id,
+            'id'=>$this->id,
             'name'=>$this->name,
-            'description'=>$this->description,
+            'email'=>$this->email,
             'created_at'=>(new Carbon($this->created_at))->format('Y-m-d'),
-            'due_date'=>(new Carbon($this->due_date))->format('Y-m-d'),
-            'status'=>$this->status,
-            'image_path'=>$this->image_path,
-            'created_by' => new UserResource($this->createdBy),
-            'updated_by'=>new UserResource($this->updatedBy),
         ];
     }
 }
